@@ -13,6 +13,11 @@
     border-radius: 8px;
 }
 
+.bottom-texts{
+    position: absolute;
+    bottom: 10%;
+}
+
 .product-info{
     margin: 0 14px;
 }
@@ -23,9 +28,6 @@
 }
 
 .product-name{
-    font-family: 'Lato';
-    font-style: normal;
-    font-weight: 400;
     font-size: 21px;
     line-height: 25px;
     margin-top: 7px;
