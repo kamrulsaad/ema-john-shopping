@@ -1,4 +1,4 @@
-.shop-area{
+.shop-section{
     display: grid;
     grid-template-columns: 4fr 1fr;
 }
@@ -6,11 +6,15 @@
 .products-container{
     display: grid;
     grid-template-columns: repeat(3,1fr);
-    margin: 30px auto;
-    gap: 35px;
+    gap: 45px;
+    margin: 20px auto;
 }
 
 .cart-container{
     background-color: #FF99004D;
-    padding-left: 18px;
+    padding-left: 15px;
+}
+
+.cart-container h4{
+    text-align: center;
 }
