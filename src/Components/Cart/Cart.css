@@ -29,3 +29,26 @@
     line-height: 25px;
     letter-spacing: 0.0015em;
 }
+
+.clear-btn{
+    background: #FF3030;
+    border-radius: 4px;
+    width: 232px;
+    height: 48px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    cursor: pointer;
+    transition: all 0.4s ease;
+}
+
+.clear-btn:hover{
+    background-color: darkred;
+}
+
+.clear-btn p{
+    color: white;
+    margin-right: 5px;
+}

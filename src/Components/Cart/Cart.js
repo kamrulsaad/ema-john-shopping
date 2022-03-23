@@ -1,7 +1,15 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import { removeFromDb } from '../../utilities/fakedb';
 import React from 'react';
 import './Cart.css'
 
-const Cart = ({cart}) => {
+const Cart = ({cart, setCart}) => {
+    const clearFromCart = () =>{
+        removeFromDb();
+        setCart([]);
+    }
+
     let totalPrice = 0;
     let shippingCost = 0;
     let quantity = 0;
@@ -22,6 +30,10 @@ const Cart = ({cart}) => {
             <h6 className="grand-total">
                 Grand Total: ${(totalPrice + tax + shippingCost).toFixed(2)} 
             </h6>
+            <button onClick= {clearFromCart} className='clear-btn'>
+                <p>Clear Cart</p>
+                <FontAwesomeIcon icon={faTrashCan}></FontAwesomeIcon>
+            </button>
         </div>
     );
 };

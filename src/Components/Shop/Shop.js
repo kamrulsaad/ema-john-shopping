@@ -43,6 +43,7 @@ const Shop = () => {
         setCart(newCart);
         addToDb(selectedProduct.id);
     }
+   
     
 
     return (
@@ -57,7 +58,7 @@ const Shop = () => {
                 }
             </div>
             <div className="cart-container">
-                <Cart cart = {cart}></Cart>
+                <Cart cart = {cart} setCart={setCart}></Cart>
             </div>
         </div>
     );
