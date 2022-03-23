@@ -15,6 +15,11 @@
     padding-left: 15px;
 }
 
-.cart-container h4{
-    text-align: center;
+@media all and (max-width : 768px) {
+    .products-container{
+        grid-template-columns: repeat(1,1fr);
+    }
+    .shop-section{
+        grid-template-columns: 3fr 2fr;
+    }
 }
