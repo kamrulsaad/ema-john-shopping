@@ -13,6 +13,7 @@
 .cart-container{
     background-color: #FF99004D;
     padding-left: 15px;
+    padding-bottom: 20px;
 }
 
 @media all and (max-width : 768px) {
