@@ -2,13 +2,17 @@ import auth from "../../firebase.init";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Register.css";
-import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+import { useCreateUserWithEmailAndPassword, useSendEmailVerification } from "react-firebase-hooks/auth";
 
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [notMatchedError, setNotMatchedError] = useState("");
+
+  const [sendEmailVerification] = useSendEmailVerification(
+    auth
+  );
 
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
@@ -75,6 +79,7 @@ const Register = () => {
         <input className="form-submit" type="submit" value="Sign Up" />
         <p style={{ color: "red" }}>{error?.message}</p>
         <p style={{ color: "red" }}>{notMatchedError}</p>
+        <p style={{ textAlign: "center", margin: "0" }}>{loading && 'loading...'}</p>
         <p style={{ textAlign: "center", margin: "0" }}>
           Already Registered?
           <Link

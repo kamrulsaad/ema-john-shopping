@@ -64,7 +64,7 @@ const Login = () => {
           </Link>{" "}
         </p>
       </form>
-      
+      <p style={{color : 'red', }}>Forgot Password?</p>
     </div>
   );
 };
