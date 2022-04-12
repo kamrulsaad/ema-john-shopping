@@ -7,22 +7,28 @@ import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [notMatchedError, setNotMatchedError] = useState("");
 
-  const [createUserWithEmailAndPassword, error] =
+  const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
+
+  const handleEmailBlur = (e) => setEmail(e.target.value);
+
+  const handleConfirmPasswordBlur = (e) => setConfirmPassword(e.target.value);
+
+  const handlePasswordBlur = (e) => setPassword(e.target.value);
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    setEmail(e.target.email.value);
-    if (e.target.password.value !== e.target.confirmPassword.value) {
+    if (password !== confirmPassword) {
       const notMatched = "Your Passwords did not Match!!";
-      setNotMatchedError(notMatched)
-      return ;
+      setNotMatchedError(notMatched);
+      return;
     } else {
-        setNotMatchedError('')
-      setPassword(e.target.password.value);
-      createUserWithEmailAndPassword(email, password)
+      setNotMatchedError("");
+      setPassword(password);
+      createUserWithEmailAndPassword(email, password);
     }
   };
 
@@ -34,13 +40,20 @@ const Register = () => {
           <label className="input-label" htmlFor="email">
             Your Email
           </label>
-          <input className="input-field" type="email" required name="email" />
+          <input
+            onBlur={handleEmailBlur}
+            className="input-field"
+            type="email"
+            required
+            name="email"
+          />
         </div>
         <div className="input-group">
           <label className="input-label" htmlFor="password">
             Your password
           </label>
           <input
+            onBlur={handlePasswordBlur}
             className="input-field"
             type="password"
             required
@@ -52,6 +65,7 @@ const Register = () => {
             Confirm your password
           </label>
           <input
+            onBlur={handleConfirmPasswordBlur}
             className="input-field"
             type="password"
             required
@@ -59,8 +73,8 @@ const Register = () => {
           />
         </div>
         <input className="form-submit" type="submit" value="Sign Up" />
-        <p style={{color : 'red'}}>{error && error.message}</p>
-        <p style={{color: 'red'}}>{notMatchedError}</p>
+        <p style={{ color: "red" }}>{error?.message}</p>
+        <p style={{ color: "red" }}>{notMatchedError}</p>
         <p style={{ textAlign: "center", margin: "0" }}>
           Already Registered?
           <Link
