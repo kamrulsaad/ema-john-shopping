@@ -2,7 +2,10 @@ import auth from "../../firebase.init";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Register.css";
-import { useCreateUserWithEmailAndPassword, useSendEmailVerification } from "react-firebase-hooks/auth";
+import {
+  useCreateUserWithEmailAndPassword,
+  useSignInWithGoogle,
+} from "react-firebase-hooks/auth";
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -10,14 +13,13 @@ const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [notMatchedError, setNotMatchedError] = useState("");
 
-  const [sendEmailVerification] = useSendEmailVerification(
-    auth
-  );
 
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
 
   const handleEmailBlur = (e) => setEmail(e.target.value);
+
+  const [signInWithGoogle] = useSignInWithGoogle(auth)
 
   const handleConfirmPasswordBlur = (e) => setConfirmPassword(e.target.value);
 
@@ -79,8 +81,10 @@ const Register = () => {
         <input className="form-submit" type="submit" value="Sign Up" />
         <p style={{ color: "red" }}>{error?.message}</p>
         <p style={{ color: "red" }}>{notMatchedError}</p>
-        <p style={{ textAlign: "center", margin: "0" }}>{loading && 'loading...'}</p>
         <p style={{ textAlign: "center", margin: "0" }}>
+          {loading && "loading..."}
+        </p>
+        <p style={{ textAlign: "center", margin: "0", marginBottom : '10px' }}>
           Already Registered?
           <Link
             style={{ textDecoration: "none", color: "#FF9900" }}
@@ -91,6 +95,10 @@ const Register = () => {
           </Link>{" "}
         </p>
       </form>
+      <div onClick={() => signInWithGoogle()} className="google-sign-in">
+        <img src="https://4.bp.blogspot.com/-K1IdqgDmrJU/W1tubjO-LrI/AAAAAAAABN4/kIB_xbkes2MMSxqXF7gBxuJSr4FDuufPwCLcBGAs/s1600/Google-logo-2015-G-icon.png" alt="google" />
+        <p>Sign in with Google Instead</p>
+      </div>
     </div>
   );
 };

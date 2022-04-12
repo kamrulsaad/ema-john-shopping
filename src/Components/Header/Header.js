@@ -8,7 +8,8 @@ import { signOut } from "firebase/auth";
 
 const Header = () => {
   const [user] = useAuthState(auth);
-
+  console.log(user?.photoURL);
+  
   return (
     <nav className="Header">
       <img src={logo} alt="" />
@@ -23,6 +24,7 @@ const Header = () => {
             <Link to="/register">Register</Link>
           </div>
         )}
+        <img src={user?.photoURL} alt="" />
       </div>
     </nav>
   );

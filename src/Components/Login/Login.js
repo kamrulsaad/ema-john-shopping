@@ -1,20 +1,36 @@
 import React, { useState } from "react";
-import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import { useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithGoogle } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
 import auth from "../../firebase.init";
 import "./Login.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");
+  const [clicked, setClicked] = useState(false);
   const [password, setPassword] = useState("");
   const [signInWithEmailAndPassword , 
     user,
     loading,
     error] = useSignInWithEmailAndPassword(auth)
 
+    const [signInWithGoogle] =useSignInWithGoogle(auth)
+
+    const [sendPasswordResetEmail] = useSendPasswordResetEmail(
+      auth
+    );
+
   const handleEmailBlur = (e) => setEmail(e.target.value);
 
+  const handleResetPassword = () => {
+    sendPasswordResetEmail(email)
+    setClicked(true)
+  }
+
   const handlePasswordBlur = (e) => setPassword(e.target.value);
+
+  const handleGoogleSignIn = () => {
+    signInWithGoogle()
+  }
 
   const handleFormSubmit = e => {
     e.preventDefault();
@@ -64,7 +80,12 @@ const Login = () => {
           </Link>{" "}
         </p>
       </form>
-      <p style={{color : 'red', }}>Forgot Password?</p>
+      <p onClick={handleResetPassword} style={{color : 'red', textAlign: "center", cursor: "pointer" }}>{clicked ? 'Please Check Your Email for resetting password' : 'Forgot Password?'}</p>
+
+      <div onClick={handleGoogleSignIn} className="google-sign-in">
+        <img src="https://4.bp.blogspot.com/-K1IdqgDmrJU/W1tubjO-LrI/AAAAAAAABN4/kIB_xbkes2MMSxqXF7gBxuJSr4FDuufPwCLcBGAs/s1600/Google-logo-2015-G-icon.png" alt="google" />
+        <p>Sign in with Google Instead</p>
+      </div>
     </div>
   );
 };

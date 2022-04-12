@@ -32,3 +32,11 @@
 .menus button:hover{
     color: orange;
 }
+
+.menus img{
+    width: 40px;
+    margin-left: 15px;
+    border-radius: 50%;
+    position: absolute;
+    top: 15px;
+}
