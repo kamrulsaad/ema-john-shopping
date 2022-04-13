@@ -30,7 +30,7 @@
     letter-spacing: 0.0015em;
 }
 
-.clear-btn{
+.clear-btn, .checkout-btn{
     background: #FF3030;
     border-radius: 4px;
     width: 232px;
@@ -42,13 +42,14 @@
     color: white;
     cursor: pointer;
     transition: all 0.4s ease;
+    margin-bottom: 10px;
 }
 
-.clear-btn:hover{
+.clear-btn:hover, .checkout-btn:hover{
     background-color: darkred;
 }
 
-.clear-btn p{
+.clear-btn p, .checkout-btn p{
     color: white;
     margin-right: 5px;
 }

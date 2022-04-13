@@ -1,10 +1,10 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
-import { deleteShoppingCart} from '../../utilities/fakedb';
+import { deleteShoppingCart } from '../../utilities/fakedb';
 import React from 'react';
 import './Cart.css'
 
-const Cart = ({cart, setCart}) => {
+const Cart = ({cart, setCart, children}) => {
     const clearFromCart = () =>{
         deleteShoppingCart();
         setCart([]);
@@ -34,6 +34,7 @@ const Cart = ({cart, setCart}) => {
                 <p>Clear Cart</p>
                 <FontAwesomeIcon icon={faTrashCan}></FontAwesomeIcon>
             </button>
+            {children}
         </div>
     );
 };
