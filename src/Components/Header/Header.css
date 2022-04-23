@@ -19,6 +19,10 @@
     color: orange;
 }
 
+.menus a:focus{
+    color: orange;
+}
+
 .menus button{
     background-color: inherit;
     color: white;

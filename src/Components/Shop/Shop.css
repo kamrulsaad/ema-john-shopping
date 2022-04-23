@@ -6,7 +6,7 @@
 .products-container{
     display: grid;
     grid-template-columns: repeat(3,1fr);
-    gap: 45px;
+    gap: 30px;
     margin: 20px auto;
 }
 
@@ -14,6 +14,28 @@
     background-color: #FF99004D;
     padding-left: 15px;
     padding-bottom: 20px;
+}
+
+.page-btn{
+    margin-right: 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    border: 1px solid slategray;
+    padding: 5px;
+    transition: all 0.2s ease-in-out;
+}
+
+.page-btn:focus, .page-btn:hover{
+    background-color: orange;
+    color: white;
+    border: 1px solid white;
+    transform: scale(1.3);
+}
+
+.pagination{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 @media all and (max-width : 768px) {
