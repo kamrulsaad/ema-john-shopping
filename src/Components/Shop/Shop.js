@@ -23,10 +23,10 @@ const Shop = () => {
         fetch('http://localhost:5000/productsCount')
         .then(res => res.json())
         .then(data =>  {
-            const pages = Math.ceil(data.count / 10)
+            const pages = Math.ceil(data.count / size)
             setPageCount(pages)
         })
-    },[])
+    },[size])
 
 
     const handleAddToCart = (selectedProduct) => {
@@ -64,9 +64,9 @@ const Shop = () => {
                         [...Array(pageCount).keys()]
                         .map(index => <button key={index} onClick={() => setPage(index)} className={page === index ? 'page-btn' : ''} >{index+1}</button>)
                     }
-                    <select onChange={(e) => setSize(e.target.value)} >
+                    <select defaultValue={size} onChange={(e) => setSize(e.target.value)} >
                         <option value="5">5</option>
-                        <option value="10" defaultValue={size}>10</option>
+                        <option value="10">10</option>
                         <option value="15">15</option>
                         <option value="20">20</option>
                     </select>
