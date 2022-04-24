@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   useSendPasswordResetEmail,
   useSignInWithEmailAndPassword,
@@ -18,7 +18,9 @@ const Login = () => {
   const [signInWithEmailAndPassword, user, loading, error] = useSignInWithEmailAndPassword(auth);
   const [signInWithGoogle, googleUser] = useSignInWithGoogle(auth);
 
-  if (user || googleUser) navigate(from, {replace: true})
+  useEffect(() => {
+    if (user || googleUser) navigate(from, {replace: true})
+  },[user,googleUser, from, navigate])
 
   const [sendPasswordResetEmail] = useSendPasswordResetEmail(auth);
 

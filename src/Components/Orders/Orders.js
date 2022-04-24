@@ -1,15 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import useCart from "../../hooks/useCart";
-import useProducts from "../../hooks/useProducts";
 import { removeFromDb } from "../../utilities/fakedb";
 import Cart from "../Cart/Cart";
 import ReviewItems from "../ReviewItems/ReviewItems";
 import './Order.css'
 
 const Orders = () => {
-  const [products, setProducts] = useProducts();
+  const [products, setProducts] = useState([]);
   const [cart, setCart] = useCart(products);
+
+  useEffect(() => {
+    fetch('http://localhost:5000/products')
+      .then(res => res.json())
+      .then(data => setProducts(data))
+  }, [])
 
   const deleteFromCart = id => {
     setCart(cart.filter(pd => pd._id !== id));
@@ -20,19 +25,19 @@ const Orders = () => {
     <div className="shop-section">
       <div className="review-container">
         {
-            cart.map(product => <ReviewItems 
+          cart.map(product => <ReviewItems
             key={product._id}
-            product ={product}
+            product={product}
             deleteFromCart={deleteFromCart}></ReviewItems>)
         }
       </div>
       <div className="review-cart">
-          <Cart cart={cart} setCart={setCart}
-          >
-            <Link style={{textDecoration : "none"}} to='/inventory' >
-              <button className="clear-btn">Proceed to CheckOut</button>
-            </Link>
-          </Cart>
+        <Cart cart={cart} setCart={setCart}
+        >
+          <Link style={{ textDecoration: "none" }} to='/inventory' >
+            <button className="clear-btn">Proceed to CheckOut</button>
+          </Link>
+        </Cart>
       </div>
     </div>
   );
