@@ -11,13 +11,12 @@ const Inventory = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [address, setAddress] = useState("");
 
-  const handleNameBlur = (e) => setName(e.target.value);
-  const handleAdressBlur = (e) => setAddress(e.target.value);
-  const handlePhoneNumberBlur = (e) => setPhoneNumber(e.target.value);
-
   const handleFormSubmit = (e) => {
     e.preventDefault();
     setEmail(user?.email)
+    setName(user?.displayName)
+    setPhoneNumber(e.target.phoneNumber.value)
+    setAddress(e.target.address.value)
     const shippingInfo = { name, email, phoneNumber, address}
     console.log(shippingInfo);
   };
@@ -31,8 +30,8 @@ const Inventory = () => {
             Your Name
           </label>
           <input
-            required
-            onBlur={handleNameBlur}
+            readOnly
+            value={user?.displayName}
             className="input-field"
             type="text"
             name="name"
@@ -55,10 +54,9 @@ const Inventory = () => {
             Your Phone Number
           </label>
           <input
-            onBlur={handlePhoneNumberBlur}
             className="input-field"
             type="text"
-            name="phone-number"
+            name="phoneNumber"
             required
           />
         </div>
@@ -67,7 +65,6 @@ const Inventory = () => {
             Your Adress
           </label>
           <input
-            onBlur={handleAdressBlur}
             className="input-field"
             type="address"
             name="address"

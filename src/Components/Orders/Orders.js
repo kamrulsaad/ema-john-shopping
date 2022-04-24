@@ -8,7 +8,7 @@ import './Order.css'
 
 const Orders = () => {
   const [products, setProducts] = useState([]);
-  const [cart, setCart] = useCart(products);
+  const [cart, setCart] = useCart();
 
   useEffect(() => {
     fetch('http://localhost:5000/products')

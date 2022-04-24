@@ -10,7 +10,7 @@ const Shop = () => {
     const [page, setPage] = useState(0)
     const [pageCount, setPageCount] = useState(0)
     const [products, setProducts] = useState([]);
-    const [cart, setCart] = useCart(products);
+    const [cart, setCart] = useCart();
     const [size, setSize] = useState(10)
 
     useEffect( () => {
