@@ -14,13 +14,13 @@ const Shop = () => {
     const [size, setSize] = useState(10)
 
     useEffect( () => {
-        fetch(`http://localhost:5000/products?page=${page}&size=${size}`)
+        fetch(`https://emma-john-shopping-server.herokuapp.com/products?page=${page}&size=${size}`)
         .then(res => res.json())
         .then(data => setProducts(data))
     },[page, size])
 
     useEffect(() => {
-        fetch('http://localhost:5000/productsCount')
+        fetch('https://emma-john-shopping-server.herokuapp.com/productsCount')
         .then(res => res.json())
         .then(data =>  {
             const pages = Math.ceil(data.count / size)
